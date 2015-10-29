@@ -1,0 +1,98 @@
+###(.sensesys)#################################################################
+#H# Detemine the CPU type OS type and Host Name of current login              #
+###############################################################################
+#set echo
+system=`uname -s`
+release=`uname -r`
+cpuarch=`uname -m`
+nodename=`uname -n`
+case $system in
+    SunOS)
+        case $cpuarch in
+            sun4*) export ARCH=SUN4 ;;
+	    *)     export ARCH=SUN3 ;;
+        esac
+        case $release in
+             4.*) export OS=SUNOS ;;
+             5.*)
+	         export OS=SOLARIS
+	         export OPENWINHOME=/usr/openwin
+                 ;;
+        esac
+        ;;
+
+    HP-UX)
+	export OS=HPUX
+	case $cpuarch in
+            9000/7*) export ARCH=HPPA ;;
+	esac
+        ;;
+
+    IRIX)
+        export OS=IRIX
+        cpuarch=`uname -p`
+        if [ "$cpuarch" = "mips" ] ; then
+	    export ARCH=MIPS 
+        fi
+        ;;
+
+    OSF1)
+        export OS=OSF1
+        if [ "$cpuarch" = "alpha" ] ; then
+	    export ARCH=ALPHA
+        fi
+        ;;
+
+    AIX)
+        export OS=AIX
+        export ARCH=PPC
+        ;;
+
+    Linux)
+        export OS=LINUX
+        case $cpuarch in
+            i*86)   export ARCH=i386 ;;
+            x86_64)   export ARCH=IA64 ;;
+            alpha)  export ARCH=ALPHA ;;
+        esac
+        ;;
+
+    Darwin*)
+        export OS=DARWIN
+        case $cpuarch in
+            i*86)   export ARCH=i386 ;;
+            x86_64) export ARCH=IA64 ;;
+            Power*) export ARCH=PPC ;;
+        esac
+        ;;
+
+    FreeBSD)
+        export OS=FreeBSD
+        case $cpuarch in
+            i*86)   export ARCH=i386 ;;
+            Power*) export ARCH=PPC ;;
+        esac
+        ;;
+
+    CYGWIN*)
+        export OS=WINDOWS
+        case $cpuarch in
+            i*86)   export ARCH=i386 ;;
+            Power*) export ARCH=PPC ;;
+        esac
+	;;
+
+    *)
+        echo ".sensesys does not recognize this system"
+        echo "	system=$system"
+        echo "	release=$release"
+        echo "	cpuarch=$cpuarch"
+        echo "	nodename=$nodename"
+        ;;
+esac 
+
+export HOST=$nodename
+
+if [ -n "$PS1" ] ; then
+    echo $HOST is a $ARCH running $OS
+fi
