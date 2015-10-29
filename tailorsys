@@ -1,0 +1,183 @@
+###(.taylorsys)################################################################
+#H# Perform system and host dependent customizations
+###############################################################################
+#set -x
+if [ -d $HOME/BIN/${ARCH}-${OS}/bin ] ; then
+    GNUPORT=/bin
+fi
+PLATBIN=${ARCH}-${OS}${GNUPORT}
+
+if [ "$OS" = "LINUX" ] ; then
+    export PATH=.:$HOME/BIN/$PLATBIN:/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$PATH:/usr/X11R6/bin
+    export PATH=$PATH:/opt/SUNWspro/bin
+    export PATH=$PATH:/usr/local/bin:/usr/local/java/bin
+#    export MANPATH="/usr/man:/usr/share/man:/usr/openwin/man:/usr/dt/man:/usr/local/man:/usr/local/gnu/man:/opt/SUNWspro/man"
+#    export LD_LIBRARY_PATH=/usr/lib:/usr/openwin/lib:/usr/dt/lib
+    if [ "$HOST" = whirlwind ] ; then
+	export CLASSPATH=.:/usr/local/swing/motif.jar:/usr/local/swing/multi.jar:/usr/local/swing/swing.jar:/usr/local/java/lib/classes.zip
+    fi
+fi
+
+if [ "$OS" = "SOLARIS" ] ; then
+    export PATH=.:$HOME/BIN/$PLATBIN:/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$PATH:/usr/openwin/bin:/usr/dt/bin:/usr/local/X11/bin
+    export PATH=$PATH:/opt/SUNWspro/bin
+    export PATH=$PATH:/usr/local/bin:/usr/local/gnu/bin:/usr/local/java/bin
+    export PATH=$PATH:/usr/ucb:/usr/ccs/bin
+    export MANPATH="/usr/man:/usr/share/man:/usr/openwin/man:/usr/dt/man:/usr/local/man:/usr/local/gnu/man:/opt/SUNWspro/man"
+    export LD_LIBRARY_PATH=/usr/lib:/usr/openwin/lib:/usr/dt/lib
+    export OPENWINHOME=/usr/openwin
+
+#    if [ "$HOST" = "moon" -o \
+#         "$HOST" = "ringworld" -o "$HOST" = "cyteen" ] ; then
+#        #setenv MOZILLA_HOME /usr/local/netscape
+#	#setenv ORACLE_HOME /usr/local/oracle
+#	#setenv SYBASE /usr/local/sybase
+#	#setenv INFORMIXDIR /usr/local/informix
+#        #setenv INFORMIXSERVER online_720UC2
+#	#setenv LD_LIBRARY_PATH /usr/lib:/usr/openwin/lib:/usr/dt/lib:/usr/local/sybase/lib:/usr/local/informix/lib:/usr/local/informix/lib/esql
+##
+#        #if ( $HOST == cyteen ) then
+#           #set path=(/opt/compilers/SUNpro4.2.jumbo3/SC4.2/bin $path)
+#                #rehash
+#                #setenv MANPATH "${MANPATH}:/opt/compilers/SUNpro4.2.jumbo3/SC4.2/man"
+#                #setenv LD_LIBRARY_PATH "${LD_LIBRARY_PATH}:/opt/compilers/SUNpro4.2.jumbo3/SC4.2/lib"
+#                #setenv LM_LICENSE_FILE "/opt/compilers/SUNpro4.2.jumbo3/license_dir/license.dat"
+#            #endif
+##
+#	#endif
+#
+#	#if ($?prompt != 0) then
+#	   #limit coredumpsize 4194304
+#   	   #stty kill '^u' erase '^?' intr '^c'
+#	   #eval `resize`
+#	#endif
+#    fi
+fi
+
+#else if ( $OS == SUNOS ) then
+#   	set path=(. $HOME/BIN/$ARCH/$OS \
+#          /bin /usr/bin \
+#	  /usr/bin/X11 /usr/openwin/bin /usr/dt/bin \
+#  /usr/local/bin /usr/local/gnu/bin \
+#	  /usr/ucb)
+#
+#   	setenv LD_LIBRARY_PATH /usr/lib:/usr/openwin/lib
+#   	setenv MANPATH "/usr/man:/usr/openwin/man:/usr/local/man:/usr/local/gnu/man:/opt/SUNWspro/man"
+#	setenv OPENWINHOME /usr/openwin
+#
+#	if ($?prompt != 0) then
+#	    limit coredumpsize 4194304
+#	    stty kill '^u' erase '^?' intr '^c'
+#            eval `resize`
+#	endif
+#
+if [ "$OS" = "HPUX" ] ; then
+    export PATH=.:$HOME/BIN/$PLATBIN:/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$PATH:/usr/bin/X11:/opt/imake/bin:/usr/dt/bin
+    export PATH=$PATH:/opt/aCC/bin:/usr/local/bin:/usr/local/gnu/bin
+    export PATH=$PATH:/usr/local/bin:/usr/local/gnu/bin:/usr/local/java/bin
+    export MANPATH=/usr/man:/usr/share/man:/usr/dt/man:/usr/local/man:/usr/local/gnu/man
+
+#	if ($?prompt != 0) then
+#   	    stty kill '^u' erase '^?' intr '^c'
+            unset autologout
+#	endif
+#
+#	if ( $HOST == vor ) then
+#	    setenv ORACLE_HOME /usr/local/oracle
+#	    setenv SYBASE /usr/local/sybase
+#	    setenv INFORMIXDIR /usr/local/informix
+#            setenv INFORMIXSERVER online_720UC2
+#	    setenv LD_LIBRARY_PATH /usr/lib:/usr/local/sybase/lib:/usr/local/informix/lib:/usr/local/informix/lib/esql
+#	endif
+fi
+
+#else if ( $OS == IRIX ) then
+#   	set path=(. $HOME/BIN/$ARCH/$OS \
+#          /bin /usr/bin /sbin /usr/sbin /usr/bsd \
+#	  /usr/bin/X11 /usr/dt/bin \
+#	  /usr/local/bin /usr/local/gnu/bin \
+#	  /usr/atria/bin)
+#   	setenv MANPATH "/usr/man:/usr/share/catman:/usr/dt/man:/usr/local/man:/usr/local/gnu/man"
+#
+#	if ($?prompt != 0) then
+#   	    stty kill '^u' erase '^?' intr '^c'
+#	endif
+#
+
+if [ "$OS" = "OSF1" ] ; then
+    export PATH=.:$HOME/BIN/$PLATBIN:/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$PATH:/usr/bin/X11:/usr/dt/bin
+    export PATH=$PATH:/usr/local/bin:/usr/local/gnu/bin:/usr/ucb
+    export MANPATH=/usr/man:/usr/local/man:/usr/local/gnu/man
+
+    export TIMEOUT=0		#avoid the idle muncher
+    export TMOUT=0		#avoid the idle muncher
+    unset autologout		#avoid the idle muncher
+    if [ "$HOST" = "alley" ] ; then
+        EMACSVERSION=19.31.2
+    fi
+#    if ($?prompt != 0) then
+#   	    stty kill '^u' erase '^?' intr '^c'
+#    fi
+fi
+
+if [ "$OS" = "ULTRIX" ] ; then
+    export PATH=.:$HOME/BIN/$PLATBIN:/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$PATH:/usr/bin/X11:/usr/dt/bin
+    export PATH=$PATH:/usr/local/bin:/usr/local/gnu/bin:/usr/ucb
+    export MANPATH=/usr/man:/usr/local/man:/usr/local/gnu/man
+    if [ "$HOST" = "quality" ] ; then
+        export PATH=$PATH:/ddts/mips_bin
+    fi
+
+    export TIMEOUT=0		#avoid the idle muncher
+    export TMOUT=0		#avoid the idle muncher
+#    if ($?prompt != 0) then
+#   	    stty kill '^u' erase '^?' intr '^c'
+#    fi
+fi
+if [ "$OS" = "AIX" ] ; then
+    export PATH=.:$HOME/BIN/$PLATBIN:/bin:/usr/bin:/sbin:/usr/sbin
+    export PATH=$PATH:/usr/bin/X11:/usr/dt/bin
+    export PATH=$PATH:/usr/local/bin:/usr/local/gnu/bin:/usr/ucb
+    export MANPATH=/usr/man:/usr/share/man:/usr/dt/man:/usr/local/man:/usr/local/gnu/man
+    export LIBPATH=/usr/lib:/usr/local/lib:/usr/local/gnu/lib
+
+#    if ($?prompt != 0) then
+#        stty kill '^u' erase '^?' intr '^c'
+#    endif
+fi 
+
+if [ "$OS" = "DARWIN" ]; then
+    PATH=.:$HOME/BIN/$PLATBIN:$HOME/BIN:/usr/local/bin
+    PATH=$PATH:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+    PATH=$PATH:/Developer/usr/bin
+    MANPATH=/usr/share/man:/Developer/usr/share/man:/usr/local/man
+    export PATH MANPATH
+    if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
+         #export TERM=xterm
+         export TERM=vt100
+         tset
+    fi
+fi
+
+if [ "$OS" = "WINDOWS" ] ; then
+    winroot=`cygpath $WINDIR`
+    export PATH=.:/usr/local/bin:/usr/bin:/bin
+    export PATH=$PATH:$winroot/system32:$winroot:$winroot/System32/Wbem
+    export PATH=$PATH:/DrvC/opt/dos:$HOME/BIN
+    export MANPATH=/usr/share/man:/usr/local/man
+
+    # Test if running admin
+    AT > /dev/null
+    if [ $? = 0 ]; then
+       export WENV_USERID=Admin
+    fi
+
+    set -o ignoreeof
+
+    unset TZ # Avoid bogus CYGWIN TZ value
+fi
