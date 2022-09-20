@@ -70,6 +70,7 @@ case $system in
         export OS=FreeBSD
         case $cpuarch in
             i*86)   export ARCH=i386 ;;
+	    arm64)  export ARCH=AMD64 ;;
             Power*) export ARCH=PPC ;;
         esac
         ;;
