@@ -79,6 +79,7 @@ case $system in
         export OS=WINDOWS
         case $cpuarch in
             i*86)   export ARCH=i386 ;;
+	    x86_64) export ARCH=x86_64 ;;
             Power*) export ARCH=PPC ;;
         esac
 	;;
