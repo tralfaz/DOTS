@@ -51,9 +51,10 @@ case $system in
     Linux)
         export OS=LINUX
         case $cpuarch in
-            i*86)   export ARCH=i386 ;;
+            i*86)     export ARCH=i386 ;;
             x86_64)   export ARCH=IA64 ;;
-            alpha)  export ARCH=ALPHA ;;
+	    aarch64)  export ARCH=ARN64 ;;
+            alpha)    export ARCH=ALPHA ;;
         esac
         ;;
 
