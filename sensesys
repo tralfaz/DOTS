@@ -53,7 +53,7 @@ case $system in
         case $cpuarch in
             i*86)     export ARCH=i386 ;;
             x86_64)   export ARCH=IA64 ;;
-	    aarch64)  export ARCH=ARN64 ;;
+	    aarch64)  export ARCH=ARM64 ;;
             alpha)    export ARCH=ALPHA ;;
         esac
         ;;
