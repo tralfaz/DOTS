@@ -1,0 +1,72 @@
+!** Make BackSpace Key behave as Delete
+!keysym BackSpace = Delete
+!
+!** F12 --> BackSpace
+!keycode 96 = BackSpace
+!
+!** Swap Caps_Lock and Control_L
+remove Lock    = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock    = Caps_Lock
+add Control = Control_L
+!
+!** Make sure arrow keys are defined
+!keycode 27 = Up
+!keycode 34 = Down
+!keycode 31 = Left
+!keycode 35 = Right
+!
+!** Rearrange the keypad to behave like a VT100 keypad
+!** NumLock -> KP_F1 (PF1)
+clear Mod2
+remove Lock = Num_Lock
+remove mod2 = Num_Lock
+keycode 77 = KP_F1
+!** Keypad-/ -> KP_F2 (PF2)
+keycode 112  = KP_F2
+!** Keypad-* -> KP_F3 (PF3)
+keycode 63  = KP_F3
+!** Keypad-- -> KP_F4 (PF4)
+keycode 82  = KP_F4
+!** Keypad-0 -> KP_0
+keycode 90 = KP_0
+!** Keypad-1 -> KP_1
+keycode 87 = KP_1
+!** Keypad-2 -> KP_2
+keycode 88 = KP_2
+!** Keypad-3 -> KP_3
+keycode 89 = KP_3
+!** Keypad-4 -> KP_4
+keycode 83  = KP_4
+!** Keypad-5 -> KP_5
+keycode 84  = KP_5
+!** Keypad-6 -> KP_6
+keycode 85 = KP_6
+!** Keypad-7 -> KP_7
+keycode 79  = KP_7
+!** Keypad-8 -> KP_8
+keycode 80  = KP_8
+!** Keypad-9 -> KP_9
+keycode 81  = KP_9
+!** Keypad-. -> KP_Decimal
+keycode 91  = KP_Decimal
+!** Keypad-Enter -> KP_Enter
+keycode 108  = KP_Enter
+!** Keypad-+ -> KP_Add
+keycode 86 = KP_Add
+!
+!** DEC's mini editing keypad: E1 - E6
+!** Insert -> Find (E1 = \e[1z)
+!keycode 51  = Find
+!** Home -> Insert (E2 = \e[2z)
+!keycode 59  = Insert
+!** Page Up -> F35 [Can't find  Remove keysym (F35 - \e[222z)
+!keycode 103 = F35
+!** Del -> Select (E4 = \e[4z)
+!keycode 73  = Select
+!** End -> Page Up (E5 = \e[5z)
+!keycode 81  = Prior
+!** Page Down -> Next (E6 = \e[6z)
+!keycode 130 = Next
