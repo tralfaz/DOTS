@@ -172,7 +172,7 @@ if [ "$OS" = "WINDOWS" ] ; then
     export MANPATH=/usr/share/man:/usr/local/man
 
     # Test if running admin
-    AT > /dev/null
+    id | grep -q Administrators
     if [ $? = 0 ]; then
        export WENV_USERID=Admin
     fi
